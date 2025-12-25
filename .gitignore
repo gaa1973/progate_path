@@ -2,3 +2,12 @@ node_modules/
 dist/
 .vscode/
 .DS_Store
+# stop tracking these large dirs/files
+tweet_app_separated_upgrade_post_function/
+tweet_app_separated_upgrade_post_function/**/api/public/image/
+react_tutorial_component/react_tutorial/package-lock.json
+puppeteer_checker_setup_puppeteer/puppeteer_checker/package-lock.json
+
+# common ignores
+node_modules/
+package-lock.json
