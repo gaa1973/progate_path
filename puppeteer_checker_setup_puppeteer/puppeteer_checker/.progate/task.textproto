@@ -1,0 +1,1 @@
+task_id:"CwBFxQbIm54hr-bxtmMn9" situation_id:"dl2PDFaisHV6sy7Gt5o_h" check_item:{check_item_id:"t1v4tjfGf2QiI1sfise7P" command:{command_id:"8xfqlVT3fiuZxRNcVc18k" command_line:"progate diagnose"}} check_item:{check_item_id:"JCN139vK-kHwIA9WQ7u73" command:{command_id:"C1Fvpx5314MvpXFd2yQ72" command_line:"bash ./.progate/check_puppeteer.sh"}}

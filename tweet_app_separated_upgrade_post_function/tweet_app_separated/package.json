@@ -1,0 +1,14 @@
+{
+  "name": "tweet_app_separated",
+  "scripts": {
+    "start:api": "npm run watch -w ./api",
+    "start:front": "npm run start -w ./front"
+  },
+  "workspaces": [
+    "./*"
+  ],
+  "overrides": {
+    "glob": "11.0.1"
+  },
+  "license": "SEE LICENSE IN LICENSE"
+}
