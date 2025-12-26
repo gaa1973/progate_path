@@ -1,9 +1,0 @@
-{
-  "extends": "./tsconfig",
-  "compilerOptions": {
-    "lib": ["es2021", "DOM"],
-  },  
-  "include": [
-    "src", "__tests__",
-  ]
-}
