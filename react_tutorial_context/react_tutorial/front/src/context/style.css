@@ -1,0 +1,102 @@
+body {
+  font-size: 14px;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  margin: 0 0 0.25em;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card Style */
+.card-light,
+.card-dark {
+  border-radius: 0.5em;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto 2rem;
+  box-shadow: 0 10px 16px rgba(0, 0, 0, 0.2);
+}
+.card-light {
+  background-color: #fff;
+}
+.card-dark {
+  background-color: #303841;
+}
+
+.header {
+  height: 200px;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-light,
+.avatar-dark {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.avatar-light {
+  background-color: #303841;
+}
+.avatar-dark {
+  background-color: #fff;
+}
+
+.body-light,
+.body-dark {
+  text-align: center;
+  padding: 0 20px 24px;
+}
+.body-light {
+  color: #303841;
+}
+.body-dark {
+  color: #fff;
+}
+
+/* Button Style */
+.button-light,
+.button-dark {
+  width: 120px;
+  margin: 0 auto;
+  border: 1px solid #303841;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.button-light {
+  color: #fff;
+  background-color: #303841;
+}
+.button-dark {
+  color: #303841;
+  background-color: #fff;
+}
