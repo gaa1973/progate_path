@@ -1,0 +1,35 @@
+{
+  "name": "react_router_tutorial",
+  "license": "SEE LICENSE IN LICENSE",
+  "scripts": {
+    "start": "npm run start -w front",
+    "test": "npm run test -w e2e",
+    "test:add_a_number_page": "npm run test:add_a_number_page -w e2e",
+    "test:add_a_product_page": "npm run test:add_a_product_page -w e2e",
+    "test:route_parameter": "npm run test:route_parameter -w e2e",
+    "test:query_parameter": "npm run test:query_parameter -w e2e",
+    "test:layout_for_all_pages": "npm run test:layout_for_all_pages -w e2e",
+    "test:layout_for_specific_pages": "npm run test:layout_for_specific_pages -w e2e",
+    "lint:check": "npm run lint:check --ws",
+    "lint:fix": "npm run lint:fix --ws",
+    "format:check": "npm run format:check --ws",
+    "format:fix": "npm run format:fix --ws",
+    "typecheck": "npm run typecheck --ws"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.20.0",
+    "eslint": "^9.20.1",
+    "eslint-config-prettier": "^10.0.1",
+    "globals": "^15.15.0",
+    "prettier": "^3.5.1",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0"
+  },
+  "overrides": {
+    "glob": "10.4.5"
+  },
+  "workspaces": [
+    "e2e",
+    "front"
+  ]
+}
