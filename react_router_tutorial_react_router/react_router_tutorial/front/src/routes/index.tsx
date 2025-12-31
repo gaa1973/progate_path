@@ -1,10 +1,12 @@
 import {RouteObject} from "react-router-dom";
 import {Top} from "@/pages/top";
 import {NumberListPage} from "@/routes/number_list";
+import {NumberDetailsPage} from "@/pages/number_details";
 import {ProductListPage} from "@/pages/product_list";
 
 export const AppRoutes: RouteObject[] = [
   {path: "/", element: <Top />},
   {path: "/numbers", element: <NumberListPage />},
+  {path: "/numbers/:id", element: <NumberDetailsPage />},
   {path: "/products", element: <ProductListPage />},
 ];
