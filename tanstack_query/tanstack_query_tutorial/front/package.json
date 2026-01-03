@@ -1,0 +1,24 @@
+{
+  "name": "front",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "start:test": "NODE_ENV=test vite -l silent --host",
+    "lint:check": "eslint",
+    "lint:fix": "eslint --fix",
+    "format:check": "prettier --check './**/*.{ts,tsx,js,jsx}'",
+    "format:fix": "prettier --write './**/*.{ts,tsx,js,jsx}'",
+    "typecheck": "tsc --noEmit --skipLibCheck --project tsconfig.json"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.90.16",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react-swc": "^3.8.0",
+    "vite": "^6.1.0"
+  }
+}
