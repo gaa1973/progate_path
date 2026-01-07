@@ -1,0 +1,34 @@
+{
+  "name": "api",
+  "type": "module",
+  "scripts": {
+    "start": "tsx ./bin/run_server.ts",
+    "start:test": "dotenv -e .env.test -- npm run start",
+    "watch": "tsx watch ./bin/run_server.ts",
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:test": "dotenv -e .env.test -- prisma migrate dev",
+    "db:seed": "prisma db seed",
+    "db:seed:test": "dotenv -e .env.test -- prisma db seed",
+    "db:reset": "prisma migrate reset",
+    "db:reset:test": "dotenv -e .env.test -- prisma migrate reset --force",
+    "format:check": "prettier --check '**/*.{js,ts}'",
+    "format:fix": "prettier --write '**/*.{js,ts}'",
+    "lint:check": "eslint",
+    "lint:fix": "eslint --fix",
+    "typecheck": "tsc --noEmit --skipLibCheck --project tsconfig.json"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.3.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.4",
+    "prisma": "^6.3.1"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}

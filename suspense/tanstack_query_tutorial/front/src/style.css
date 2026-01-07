@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 見出しのスタイル */
+h2 {
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+/* フォームのスタイル */
+.form {
+  max-width: 400px;
+  margin: 0 auto 40px;
+}
+form {
+  width: 100%;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* ユーザー一覧のスタイル */
+.list,
+.loading,
+.error {
+  max-width: 400px;
+  margin: 0 auto 40px;
+}
+ul {
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+p {
+  margin-bottom: 0;
+  font-size: 16px;
+  color: #666;
+}
+
+.loading {
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+}
+.error {
+  font-size: 16px;
+  color: #f00;
+  text-align: center;
+}

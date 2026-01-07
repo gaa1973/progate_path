@@ -1,0 +1,38 @@
+{
+  "name": "tanstack_query_tutorial",
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
+  "scripts": {
+    "start:front": "npm run start -w front",
+    "start:api": "npm run start -w api",
+    "db:migrate": "npm run db:migrate -w api",
+    "db:migrate:test": "npm run db:migrate:test -w api",
+    "db:reset": "npm run db:reset -w api",
+    "test:e2e": "npm run test -w e2e",
+    "test:e2e:suspense": "npm run test:suspense -w e2e",
+    "lint:check": "npm run lint:check --ws",
+    "lint:fix": "npm run lint:fix --ws",
+    "format:check": "npm run format:check --ws",
+    "format:fix": "npm run format:fix --ws",
+    "typecheck": "npm run typecheck --ws",
+    "check_puppeteer": "npm run check_puppeteer -w e2e"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.20.0",
+    "dotenv-cli": "^8.0.0",
+    "eslint": "^9.20.1",
+    "eslint-config-prettier": "^10.0.1",
+    "prettier": "^3.5.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0"
+  },
+  "overrides": {
+    "glob": "11.0.1"
+  },
+  "workspaces": [
+    "front",
+    "api",
+    "e2e"
+  ]
+}
