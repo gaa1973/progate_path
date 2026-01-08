@@ -1,0 +1,30 @@
+{
+  "name": "front",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "start:test": "vite --host",
+    "watch": "vite",
+    "build": "npm run build:css && npm run build:vite",
+    "build:vite": "tsc --noEmit && vite build",
+    "build:css": "tailwindcss -i ./src/input.css -o ./src/output.css",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+    "test:typecheck": "tsc --noEmit --skipLibCheck --project tsconfig.json",
+    "lint:check": "eslint",
+    "lint:fix": "eslint --fix",
+    "format:check": "prettier --check './**/*.{ts,tsx,js,jsx}'",
+    "format:fix": "prettier --write './**/*.{ts,tsx,js,jsx}'"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react-swc": "^3.8.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
+  }
+}
