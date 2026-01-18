@@ -4,7 +4,13 @@ import {binarySearch} from "@/binary_search/binary_search";
 const main = (): void => {
   stdin.resume();
   stdin.on("data", data => {
-    const size = 2 ** Number(data.toString("utf-8").trim());
+    const exponent = Number(data.toString("utf-8").trim());
+    const MAX_EXPONENT = 27; // 2^27 = 134,217,728 elements; above this risks allocation failures
+    if (!Number.isFinite(exponent) || exponent < 0 || exponent > MAX_EXPONENT) {
+      console.error(`Please input an integer between 0 and ${MAX_EXPONENT}.`);
+      process.exit(1);
+    }
+    const size = 2 ** exponent;
     const array = Array(size)
       .fill(0)
       .map((_, i) => i + 1);
