@@ -1,0 +1,30 @@
+{
+  "name": "algorithm",
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
+  "scripts": {
+    "start:breadth_first_search": "tsx ./bin/breadth_first_search.ts",
+    "test:breadth_first_search": "jest e2e/breadth_first_search",
+    "test:typecheck": "tsc --noEmit --skipLibCheck --project tsconfig.json",
+    "lint:check": "eslint",
+    "lint:fix": "eslint --fix",
+    "format:check": "prettier --check '**/*.{js,ts}'",
+    "format:fix": "prettier --write '**/*.{js,ts}'"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.12.0",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
+    "jest": "^29.7.0",
+    "prettier": "^3.4.2",
+    "ts-jest": "^29.2.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.22.0"
+  },
+  "overrides": {
+    "glob": "10.4.5"
+  }
+}
