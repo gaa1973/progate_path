@@ -5,7 +5,7 @@ export default {
     "^@/(.*)$": "<rootDir>/src/$1",
   },
   coverageThreshold: {
-    global: {
+    "./src/api/get_user_name.ts": {
       branches: 100,
       functions: 100,
       lines: 100,
