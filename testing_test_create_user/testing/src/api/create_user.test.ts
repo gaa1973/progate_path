@@ -8,4 +8,16 @@ describe("createUser", () => {
     const db = await databaseManager.getInstance();
     await resetDB(db);
   });
+
+  it("should create a user", async () => {
+    const db = await databaseManager.getInstance();
+    const userData = {
+      username: "testuser",
+      email: "testuser@example.com",
+    };
+    const user = await createUser(userData.username, userData.email);
+    expect(user).toBeDefined();
+    expect(user.username).toBe(userData.username);
+    expect(user.email).toBe(userData.email);
+  });
 });
