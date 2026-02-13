@@ -1,0 +1,14 @@
+<div class="article">
+  <div class="result-wrapper">
+    <div class="result">
+      <% if(isJust) { %>
+        <div class="image just" data-test="just-image"></div>
+      <% } %>
+      <p>
+        <span class="formula"><%= coins %> ➗ <%= people %> ＝</span>
+        <span class="result-coins" data-test="result-coins"><%= result %></span>Coins/Person
+      </p>
+    </div>
+    <a href="/pay-split" class="btn" data-test="back-link">BACK</a>
+  </div>
+</div>
