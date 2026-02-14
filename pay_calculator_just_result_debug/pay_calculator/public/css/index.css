@@ -169,5 +169,5 @@ header > p:after {
   height: 65px;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(image/target.svg);
+  background-image: url(/image/target.svg);
 } 

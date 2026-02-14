@@ -10,7 +10,7 @@ paySplitRouter.get("/", (req, res) => {
     const people = Number(req.query.people);
     const result = Math.ceil(coins / people);
 
-    const isJust = result / 1000 === 0
+    const isJust = result % 1000 === 0;
     res.render("pay_split/result", {coins, people, result, title, isJust});
   } else {
     res.render("pay_split/index", {title});
