@@ -1,7 +1,8 @@
+// ユーザー関連のルート（ページ表示・CRUD操作）を定義
 import express, {RequestHandler} from "express";
 import {join} from "node:path";
-import multer from "multer";
-import {nanoid} from "nanoid";
+import multer from "multer"; // ファイルアップロード処理
+import {nanoid} from "nanoid"; // ファイル名生成用にユニークなIDを生成
 import {User} from "@/models/user";
 import {
   isUniqueEmail,
@@ -14,7 +15,11 @@ import {HashPassword} from "@/lib/hash_password";
 
 export const userRouter = express.Router();
 
-/** A page to list all users */
+/**
+ * GET /users
+ * ログイン済みユーザーのみアクセス可能
+ * 全ユーザーの一覧ページを表示
+ */
 userRouter.get("/", ensureAuthUser, async (req, res) => {
   const users = await User.all();
   res.render("users/index", {
@@ -22,7 +27,13 @@ userRouter.get("/", ensureAuthUser, async (req, res) => {
   });
 });
 
-/** An endpoint to create a new user */
+/**
+ * POST /users
+ * ユーザーサインアップエンドポイント
+ * ログイン済みユーザーはアクセス不可
+ * name, email, password のバリデーション実施
+ * メールアドレスの一意性をチェック
+ */
 userRouter.post(
   "/",
   forbidAuthUser,
@@ -43,21 +54,28 @@ userRouter.post(
         errors: errors.array(),
       });
     }
+    // パスワードをハッシュ化して新規ユーザーを作成
     const hashPassword = await new HashPassword().generate(password);
     const user = new User(name, email, hashPassword);
     await user.save();
 
+    // ユーザーをログイン状態にして、成功メッセージを表示してリダイレクト
     req.authentication?.login(user);
     req.dialogMessage?.setMessage("You have signed up successfully");
     res.redirect(`/users/${user.id}`);
   },
 );
 
-/** A page to show user details */
+/**
+ * GET /users/:userId
+ * ログイン済みユーザーのみアクセス可能
+ * 特定ユーザーの詳細情報とそのユーザーが投稿した全ツイートを表示
+ */
 userRouter.get("/:userId", ensureAuthUser, async (req, res, next) => {
   const {userId} = req.params;
   const user = await User.find(Number(userId));
   if (!user) return next(new Error("Invalid error: The user is undefined."));
+  // ユーザーの全投稿を取得
   const posts = await user.posts();
   const postsWithUser = await Promise.all(
     posts.map(async post => {
@@ -75,11 +93,15 @@ userRouter.get("/:userId", ensureAuthUser, async (req, res, next) => {
   });
 });
 
-/** A page to list all tweets liked by a user */
+/**
+ * GET /users/:userId/likes
+ * 特定ユーザーが「いいね」した全ツイートを表示
+ */
 userRouter.get("/:userId/likes", async (req, res, next) => {
   const {userId} = req.params;
   const user = await User.find(Number(userId));
   if (!user) return next(new Error("Invalid error: The user is undefined."));
+  // ユーザーが「いいね」した投稿一覧を取得
   const posts = await user.likedPosts();
   const postsWithUser = await Promise.all(
     posts.map(async post => {
@@ -97,7 +119,12 @@ userRouter.get("/:userId/likes", async (req, res, next) => {
   });
 });
 
-/** A page to edit a user */
+/**
+ * GET /users/:userId/edit
+ * ログイン済みユーザーのみアクセス可能
+ * 本人のみ編集可能（ensureCorrectUser ミドルウェア）
+ * ユーザー編集フォームを表示
+ */
 userRouter.get(
   "/:userId/edit",
   ensureAuthUser,
@@ -119,11 +146,15 @@ const storage = multer.diskStorage({
     cb(null, outFileName);
   },
 });
+// アップロードファイルのフィルタリング設定
+// PNG, JPEG 形式のみを受け入れ
 const upload = multer({
   storage,
   fileFilter: (req, file, cb) => {
+    // 受け入れ可能な画像フォーマット
     const ACCEPTABLE_SUBTYPES = ["png", "jpeg"] as const;
     type AcceptableSubtype = (typeof ACCEPTABLE_SUBTYPES)[number];
+    // MIMEタイプを検証して受け入れ可能な画像タイプに変換
     const toAcceptableImageMediaType = (
       fullMimeType: string,
     ): ["image", AcceptableSubtype] | null => {
@@ -147,6 +178,11 @@ const upload = multer({
   },
 });
 
+/**
+ * アップロードエラーハンドリング
+ * multerでエラーが発生した場合、req.uploadErrorに格納する
+ * バリデーション結果と共に処理される
+ */
 const uploadHandler: RequestHandler = (req, res, next) => {
   const name = "image";
   upload.single(name)(req, res, err => {
@@ -162,7 +198,14 @@ const uploadHandler: RequestHandler = (req, res, next) => {
     next();
   });
 };
-/** An endpoint to update a user */
+
+/**
+ * PATCH /users/:userId
+ * ログイン済みユーザーのみアクセス可能
+ * 本人のみ編集可能（ensureCorrectUser ミドルウェア）
+ * ユーザー情報（名前・メール）の更新とプロフィール画像アップロード
+ * name, email のバリデーション実施
+ */
 userRouter.patch(
   "/:userId",
   ensureAuthUser,
@@ -192,13 +235,16 @@ userRouter.patch(
 
     const user = await User.find(Number(userId));
     if (!user) return next(new Error("Invalid error: The user is undefined."));
+    // ユーザー情報を更新
     Object.assign(user, {name, email});
+    // ファイルがアップロードされた場合、画像パスを設定
     if (req.file) {
       user.imageName = req.file.path.replace("public", "");
     } else {
       console.log("no file");
     }
 
+    // 更新内容をデータベースに保存してリダイレクト
     await user.update();
     req.dialogMessage?.setMessage("Your account has been updated successfully");
     res.redirect(`/users/${user.id}`);
